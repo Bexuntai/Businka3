@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Игра "Любовь Бусинки"</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Метатег для адаптивности на мобильных устройствах -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7eef7; /* Фоновый цвет - светло-розовый */
+            text-align: center;
+            margin: 0;
+            padding: 10px; /* Уменьшение внутренних отступов */
+        }
+
+        h1 {
+            color: #ff69b4; /* Розовый цвет заголовка */
+        }
+
+        p {
+            color: #555; /* Цвет текста */
+            font-size: 16px; /* Уменьшение размера шрифта */
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 8px 15px;
+            font-size: 14px; /* Уменьшение размера шрифта */
+            background-color: #ff69b4; /* Цвет кнопок - розовый */
+            color: #fff; /* Цвет текста на кнопках - белый */
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            width: 80%; /* Ширина кнопок на мобильных устройствах */
+        }
+
+        button:hover {
+            background-color: #d3468e; /* Изменение цвета кнопок при наведении */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #businkaButton {
+            margin-top: 20px; /* Изменение верхнего отступа для кнопки "Бусинка" */
+        }
+
+        #result {
+            font-weight: bold;
+            color: #ff69b4; /* Розовый цвет текста результата */
+            font-size: 18px; /* Увеличение размера шрифта */
+        }
+
+        /* Additional CSS for the video container */
+        #videoContainer {
+            margin-top: 20px;
+        }
+
+        /* Hide the video container initially */
+        #videoContainer.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Игра "Любовь Бусинки"</h1>
+
+<p id="question1">Хочешь увидеть самую милую девушку на свете?</p>
+<button id="yesButton">Да</button>
+<button id="noButton">Нет</button>
+
+<p id="question2" class="hidden">Тогда ответь на вопрос: кто тебя любит?</p>
+<button id="businkaButton" class="hidden">Бусинка</button>
+
+<!-- Video container where the YouTube video will be displayed -->
+<div id="videoContainer" class="hidden"></div>
+
+<script>
+    const question1 = document.getElementById('question1');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const question2 = document.getElementById('question2');
+    const businkaButton = document.getElementById('businkaButton');
+    const videoContainer = document.getElementById('videoContainer');
+
+    yesButton.addEventListener('click', () => {
+        question1.classList.add('hidden');
+        yesButton.classList.add('hidden');
+        noButton.classList.add('hidden');
+
+        question2.classList.remove('hidden');
+        businkaButton.classList.remove('hidden');
+    });
+
+    businkaButton.addEventListener('click', () => {
+        question2.classList.add('hidden');
+        businkaButton.classList.add('hidden');
+
+        const embedCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/PXiaRrEbR_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        
+        videoContainer.innerHTML = embedCode;
+        videoContainer.classList.remove('hidden');
+    });
+</script>
+
+</body>
+</html>
